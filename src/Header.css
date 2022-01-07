@@ -1,0 +1,33 @@
+.header {
+  background-color: #131921;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header_logo {
+  width: 100px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 18px;
+}
+.header_option {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.header-link {
+  color: white;
+  text-decoration: none;
+}
+.header_lineOne {
+  font-size: 15px;
+}
+header_lineTwo {
+  font-size: 20px;
+  font-weight: 800;
+}
