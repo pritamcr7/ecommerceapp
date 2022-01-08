@@ -51,6 +51,7 @@ const Home = () => {
   let uniqueCategories = new Set();
   products.map((item) => uniqueCategories.add(item.category));
   uniqueCategories = [...uniqueCategories];
+  uniqueCategories.push("Display All items");
   const [selectedNumber, setSelectedNumber] = useState(undefined);
   console.log(selectedNumber);
 
@@ -84,7 +85,8 @@ const Home = () => {
       </div>
       <div className="home_row">
         {products.map((item) => {
-          return selectedNumber !== undefined ? (
+          return selectedNumber !== undefined &&
+            selectedNumber !== "Display All items" ? (
             selectedNumber === item.category && (
               <Container fluid="md" className="p-0">
                 <Row style={{ padding: "6rem 0" }}>
@@ -95,9 +97,12 @@ const Home = () => {
               </Container>
             )
           ) : (
-            <Container fluid="md" className="p-0">
-              <Row style={{ padding: "6rem 0" }}>
-                <Col>
+            <Container>
+              <Row style={{ padding: "5px" }}>
+                <Col
+                  className="grid sm-3"
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
                   <Product {...item} />
                 </Col>
               </Row>

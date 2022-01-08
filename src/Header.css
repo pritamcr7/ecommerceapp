@@ -31,3 +31,8 @@ header_lineTwo {
   font-size: 20px;
   font-weight: 800;
 }
+.company_name {
+  color: rgb(138, 218, 72);
+  display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

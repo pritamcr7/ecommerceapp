@@ -10,6 +10,7 @@ const Header = () => {
         alt="logo"
         src="https://image.shutterstock.com/z/stock-vector-abstract-initial-letter-c-and-o-linked-logo-blue-gradient-circular-rounded-infinity-style-with-1728284956.jpg"
       />
+      <h2 className="company_name">Big Basket</h2>
       <Link to="/" className="header_link">
         <div className="header_option">
           <span className="header_lineOne">Hello, User</span>
