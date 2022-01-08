@@ -1,26 +1,40 @@
 import React from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const Product = ({ name, id, price, available, vendor, category }) => {
+const Product = ({ name, id, price, available, imgsrc, vendor, category }) => {
   return (
-    <div className="product">
-      <div className="product_category">{category}</div>
-      <div className="product-info">
-        <p>
-          {id} - {name}
-        </p>
-        <p className="product_price">
-          <small>₹</small>
-          <strong>{price}</strong>
-        </p>
-        {available > 0 ? (
-          <div className="product_available">
-            <p>Total Available Products - {available}</p>
-          </div>
+    <Card style={{ width: "18rem" }}>
+      <Card.Img variant="top" src={imgsrc} />
+      <Card.Body>
+        <Card.Title>{category}</Card.Title>
+        <Card.Text>
+          <p className="product_title">
+            {id} - {name}
+          </p>
+          <p className="product_price">
+            <small>₹</small>
+            <strong>{price}</strong>
+          </p>
+          <p className="product_vendor">{vendor}</p>
+          {available > 0 ? (
+            <div className="product_available">
+              <p>Total Available Products - {available}</p>
+            </div>
+          ) : (
+            <div className="product_notavailable">Out Of Stock</div>
+          )}
+        </Card.Text>
+        {available === 0 ? (
+          <Button variant="primary" disabled>
+            Purchase
+          </Button>
         ) : (
-          <div className="product_notavailable">Not Available</div>
+          <Button variant="primary">Purchase</Button>
         )}
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 
