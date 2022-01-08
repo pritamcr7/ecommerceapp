@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
 import "./Home.css";
 import Product from "./Product";
 import { Container, Row, Col } from "react-bootstrap";
@@ -13,7 +14,7 @@ const Home = () => {
       imgsrc:
         "https://english.mathrubhumi.com/polopoly_fs/1.2329655.1577412275!/image/image.jpg_gen/derivatives/landscape_894_577/image.jpg",
       vendor: "Himachal Pvt Ltd",
-      category: "Vegtables",
+      category: "Vegetables",
     },
     {
       name: "Banana",
@@ -46,6 +47,13 @@ const Home = () => {
       category: "Fruits",
     },
   ];
+
+  let uniqueCategories = new Set();
+  products.map((item) => uniqueCategories.add(item.category));
+  uniqueCategories = [...uniqueCategories];
+  const [selectedNumber, setSelectedNumber] = useState(undefined);
+  console.log(selectedNumber);
+
   return (
     <div className="home">
       <img
@@ -53,10 +61,41 @@ const Home = () => {
         alt="homepage"
         src="https://agentestudio.com/uploads/post/image/132/main_reasons_to_redesign_a_website.png"
       />
+      <div className="filter_button">
+        <Dropdown>
+          <Dropdown.Toggle variant="dark" id="dropdown-basic">
+            Filter Categories
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            {uniqueCategories.map((item) => {
+              return (
+                <Dropdown.Item
+                  value={item}
+                  id={item}
+                  onClick={(e) => setSelectedNumber(e.target.id)}
+                >
+                  {item}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
       <div className="home_row">
         {products.map((item) => {
-          return (
-            <Container fluid="md" ClassName="p-0">
+          return selectedNumber !== undefined ? (
+            selectedNumber === item.category && (
+              <Container fluid="md" className="p-0">
+                <Row style={{ padding: "6rem 0" }}>
+                  <Col>
+                    <Product {...item} />
+                  </Col>
+                </Row>
+              </Container>
+            )
+          ) : (
+            <Container fluid="md" className="p-0">
               <Row style={{ padding: "6rem 0" }}>
                 <Col>
                   <Product {...item} />
