@@ -4,6 +4,8 @@
   z-index: -1;
   margin-bottom: -150px;
   height: 300px;
+  padding: 20px;
+  margin-bottom: 50px;
 }
 .home {
   max-width: 1500px;

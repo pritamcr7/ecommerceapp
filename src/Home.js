@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
+
 import "./Home.css";
 import Product from "./Product";
 import { Container, Row, Col } from "react-bootstrap";
+import Filter from "./Filter";
 
 const Home = () => {
   const products = [
@@ -53,7 +54,6 @@ const Home = () => {
   uniqueCategories = [...uniqueCategories];
   uniqueCategories.push("Display All items");
   const [selectedNumber, setSelectedNumber] = useState(undefined);
-  console.log(selectedNumber);
 
   return (
     <div className="home">
@@ -62,46 +62,30 @@ const Home = () => {
         alt="homepage"
         src="https://agentestudio.com/uploads/post/image/132/main_reasons_to_redesign_a_website.png"
       />
-      <div className="filter_button">
-        <Dropdown>
-          <Dropdown.Toggle variant="dark" id="dropdown-basic">
-            Filter Categories
-          </Dropdown.Toggle>
 
-          <Dropdown.Menu>
-            {uniqueCategories.map((item) => {
-              return (
-                <Dropdown.Item
-                  value={item}
-                  id={item}
-                  onClick={(e) => setSelectedNumber(e.target.id)}
-                >
-                  {item}
-                </Dropdown.Item>
-              );
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
+      <Filter
+        filteredItem={(item) => setSelectedNumber(item)}
+        uniqueCategories={uniqueCategories}
+      />
       <div className="home_row">
         {products.map((item) => {
           return selectedNumber !== undefined &&
             selectedNumber !== "Display All items" ? (
             selectedNumber === item.category && (
               <Container fluid="md" className="p-0">
-                <Row style={{ padding: "6rem 0" }}>
-                  <Col>
-                    <Product {...item} />
+                <Row style={{ padding: "6rem", width: "50px" }}>
+                  <Col style={{ width: "25%" }}>
+                    <Product key={item.name} {...item} />
                   </Col>
                 </Row>
               </Container>
             )
           ) : (
-            <Container>
+            <Container fluid="md" className="p-0">
               <Row style={{ padding: "5px" }}>
                 <Col
-                  className="grid sm-3"
-                  style={{ display: "flex", flexDirection: "row" }}
+                  className="grid"
+                  style={{ display: "flex", float: "left" }}
                 >
                   <Product {...item} />
                 </Col>
