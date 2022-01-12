@@ -40,11 +40,11 @@ const Product = ({ name, id, price, available, imgsrc, vendor, category }) => {
             <strong>{price}</strong>
           </p>
           <p className="product_vendor">{vendor}</p>
-          {counter > 0 ? (
-            <p>Total Available Products - {counter}</p>
-          ) : (
-            <p className="product_notavailable">Out Of Stock</p>
-          )}
+          <p>
+            {counter > 0
+              ? `Total Available Products - ${counter}`
+              : `Out Of Stock`}
+          </p>
         </Card.Text>
         <Button variant="secondary" onClick={handleIncrement}>
           +
